@@ -1,7 +1,8 @@
 #include"Dino_head.h"
-//위의 함수들을 활용하여 게임을 플레이 하는 함수
+
 
 void Dino_play()
+// 게임을 플레이 하는 함수
 {
     SetConsoleView();
 
@@ -10,7 +11,7 @@ void Dino_play()
         //게임 시작시 초기화과정을 실행
         bool isJumping = false;
         bool isBottom = true; // 바닥에 있을 때 
-        const int gravity = 3; // 중력을 나타내는 'gravity'가 초기와 시켜줌
+        const int gravity = 3; // 중력을 나타내는 'gravity(중력)'가 초기화 시켜줌
 
         int dinoY = DINO_BOTTOM_Y;
         int treeX = TREE_BOTTOM_X;
@@ -18,6 +19,11 @@ void Dino_play()
 
         int score = 0;
         clock_t start, curr;    //점수 변수 초기화
+        /*
+        clock_t: CPU의 clock cycle을 계산하기 위해 사용
+        start: 게임 루프가 시작될 때의 값을 저장하기 위한 변수
+        curr: 현재 값을 저장하기 위한 변수
+        */
         start = clock();        //시작시간 초기화
 
         while (true)    //한 판에 대한 루프
