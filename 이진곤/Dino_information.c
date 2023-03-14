@@ -3,22 +3,22 @@
 #pragma region 콘솔 창의 크기와 제목을 지정하는 함수
 void SetConsoleView()
 {
-    system("mode con:cols=100 lines=25"); //실행 창의 크기
-    system("title Google Dinosaurs. project_4Team"); //실행 창의 제목
+    system("mode con:cols=100 lines=25"); //실행 창의 크기 가로, 세로
+    system("title KB_School_BIG_Data. project_4Team"); //실행 창의 제목
 }
 #pragma endregion
 
 #pragma region 커서의 위치를 x, y로 이동하는 함수
 void GotoXY(int x, int y)
-//WINDOW환경에서 Console 창에서 출력되는 텍스틑나 커서의 위치를 조작하는 'GotoXY'를 정의
+//Console 창에서 출력되는 텍스트나 커서의 위치를 조작하는 'GotoXY'를 정의
 {
     COORD Pos;
-    //'COORD'는 Window API에서 정의 된 구조체로 x와 y좌표, Console창에서 커서의 위치를 지정
+    //Console창에서 커서의 위치를 지정
     Pos.X = 2 * x;//x의 값을 2배 대입
     Pos.Y = y;//그대로 대입
     //Console창에서 가로폭과 세로 높이가 비례하여 표시
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Pos);
-    //'SetConsoleCursorPosition'함수 호출
+    //'SetConsoleCursorPosition(콘솔 커서 위치 설정)'함수 호출
     //출력장치 핸들(GetStdHandle(STD_OUTPUT_HANDLE)과 위에서 구한 좌표값(Pos)을 인자로 전달
     //Console 창에서 커서의 위치를 해당 좌표값으로 이동
 }
@@ -27,7 +27,7 @@ void GotoXY(int x, int y)
 #pragma region 키보드의 입력을 받고, 입력된 키의 값을 반환하는 함수
 int GetKeyDown()//키보드 입력을 받아오는 함수
 {
-    if (_kbhit() != 0)//함수 내부에서 사용되는 '_kbit()'함수는 키보드 buffer에 입력된 키 이베트가 있는지 확인하는 함수
+    if (_kbhit() != 0)//함수 내부에서 사용되는 '_kbit()'함수는 키보드 buffer에 입력된 키 이벤트가 있는지 확인하는 함수
         //키 입력이 있다면 0이 아닌 값을 반환
     {
         return _getch();//함수 '_getch'는 키보드 버퍼에서 다음 입력을 읽어들이는 함수
@@ -54,7 +54,7 @@ void DrawDino(int dinoY)//공룡 모양을 출력하는 함수인 'DrawDino'를 정의
     printf("$$     $$$$$$$  \n");
     printf("$$$   $$$$$     \n");
     printf(" $$  $$$$$$$$$$ \n");
-    printf(" $$$$$$$$$$$    \n");
+    printf(" $$$$$$$$$$$    \n");//
     printf("  $$$$$$$$$$    \n");
     printf("    $$$$$$$$    \n");
     printf("     $$$$$$     \n");
@@ -97,6 +97,7 @@ void DrawTree(int treeX)
 
 #pragma region 충돌 했을때 게임오버
 void DrawGameOver(const int score)
+//const int: 정수형 상수를 나타내는 데이터 타입, 값을 변경할 수 없기 때문에, 프로그램이 실행 중간 변경되는 것을 방지
 //'Game Over'메세지와 점수(score)를 출력하는 'DrawGamOver'을 정의
 //함수의 입력값으로 플레이어가 회득한 점수(score)가 주어지며, 'GameOver'메세지 출력
 {
@@ -123,7 +124,7 @@ void DrawGameOver(const int score)
 
 #pragma region 충돌했으면 true, 아니면 false
 bool isCollision(const int treeX, const int dinoY)
-//충동 판정을 수행하는 함수인 'isCollision'을 정의
+//충돌 판정을 수행하는 함수인 'isCollision'을 정의
 //입력 값으로 나무의 위치(treeX)와 공룡의 높이(dinoY)를 이용하여, 충돌 판정 수행
 {
     //트리의 X가 공룡의 몸체쪽에 있을때,
